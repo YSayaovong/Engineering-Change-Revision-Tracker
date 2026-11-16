@@ -6,6 +6,8 @@ SQLite-backed engineering change request simulator with controlled state transit
 
 [Read the workflow requirements, acceptance scenarios, and measurement plan](docs/workflow-case-study.md).
 
+Run `python src/stage_metrics_demo.py` for a reproducible SQL example of approval stage duration and open request aging.
+
 ## Workflow
 `DRAFT → SUBMITTED → IN_REVIEW → APPROVED → RELEASED`. Requests may also be rejected from SUBMITTED or IN_REVIEW.
 
