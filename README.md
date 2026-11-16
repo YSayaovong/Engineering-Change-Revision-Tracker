@@ -2,6 +2,10 @@
 
 SQLite-backed engineering change request simulator with controlled state transitions and append-only event history.
 
+## Analyst case study
+
+[Read the workflow requirements, acceptance scenarios, and measurement plan](docs/workflow-case-study.md).
+
 ## Workflow
 `DRAFT → SUBMITTED → IN_REVIEW → APPROVED → RELEASED`. Requests may also be rejected from SUBMITTED or IN_REVIEW.
 
