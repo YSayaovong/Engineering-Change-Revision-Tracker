@@ -39,7 +39,7 @@ Invalid transitions raise an error and are not recorded as completed changes.
 5. **Record the transition.** Update the request's current status and insert a history entry containing the previous state, new state, actor label, and UTC timestamp.
 6. **Inspect records.** List current requests or retrieve the recorded status history for an individual request.
 
-The workflow rules validate **state order**, not the real-world identity or authority of the person initiating a transition.
+The workflow rules validate **state order**, not the real-world identity or authority of the person initiating a transition. Input strings are trimmed, and invalid requests produce a nonzero command exit status without recording a completed workflow event.
 
 ## Data model
 
@@ -70,7 +70,7 @@ python src/tracker.py --db data/demo.sqlite transition --id 1 --status IN_REVIEW
 python src/tracker.py --db data/demo.sqlite list
 python src/tracker.py --db data/demo.sqlite history --id 1
 
-pytest -q
+python -m pytest -v
 ```
 
 The examples assume a new demonstration database, where the first created request receives ID `1`. Re-running them against an existing database may create a different request ID or encounter an invalid transition.
@@ -84,14 +84,16 @@ The examples assume a new demonstration database, where the first created reques
 
 ## Automated validation
 
-The test suite covers:
+The automated test suite covers:
 
-- A request moving through `DRAFT`, `SUBMITTED`, `IN_REVIEW`, `APPROVED`, and `RELEASED`.
-- Creation of an initial history event and subsequent transition events.
-- Rejection of a transition that is not permitted after release.
-- Rejection of a request whose proposed revision equals the original revision.
+- The complete `DRAFT` → `RELEASED` lifecycle and ordered history events.
+- Both rejection routes and terminal-state protection.
+- Invalid revision changes, missing mandatory fields, whitespace normalization, and skipped states.
+- Missing request IDs and invalid actor labels without unintended history entries.
+- SQLite foreign-key enforcement and persistence across database connections.
+- CLI operations, error exit codes, and execution from a different working directory.
 
-The implementation also defines additional guards, including required fields and prohibited transitions, although the current tests do not exercise every possible route through the workflow.
+GitHub Actions runs the test suite automatically on pushes, pull requests, and manual dispatch. The actor labels and status history remain a demonstration, not verified approval evidence.
 
 ## Engineering configuration relevance
 
@@ -112,6 +114,8 @@ The application models **request-status progression**. It does not confirm that 
 src/tracker.py           Command-line application, state rules, and SQLite operations
 tests/test_tracker.py    Automated workflow and revision-validation tests
 requirements.txt         Test dependency
+.github/workflows/tests.yml  Automated GitHub Actions tests
+.gitignore               Excludes local databases and Python caches
 README.md                Project documentation
 ```
 
@@ -135,3 +139,9 @@ Potential extensions include role-based approval simulation, change-impact evalu
 ## Related projects
 
 [Creo CAD Configuration Validation Toolkit](https://github.com/YSayaovong/Creo-CAD-Application-Support-Toolkit) · [Engineering BOM Validation System](https://github.com/YSayaovong/Engineering-BOM-Validation-System)
+
+## Public portfolio usage
+
+This repository is an independently developed **synthetic-data simulation** intended to demonstrate engineering configuration and change-management concepts. Use a fresh, local SQLite database for the examples. No company configuration, drawing, BOM, or engineering release is read or changed.
+
+The sample commands create an illustrative workflow; they do **not** constitute a real engineering change approval or configuration release. This project does not assert verified professional deployment or integration with any employer system.
