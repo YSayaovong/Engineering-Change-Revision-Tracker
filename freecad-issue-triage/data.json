@@ -1,0 +1,676 @@
+{
+  "title": "FreeCAD issue triage",
+  "surface": "dashboard",
+  "status": "verified",
+  "buildStatus": "complete",
+  "generatedAt": "2026-11-18",
+  "queries": {
+    "issues": {
+      "rows": [
+        {
+          "number": 27276,
+          "title": "C++ Unit Tests are disabled for Windows CI builds",
+          "state": "open",
+          "opened": "2026-01-31T23:59:05Z",
+          "closed": null,
+          "type": "Code Quality",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27273,
+          "title": "Assembly: two different ways to render a Suppressed joint",
+          "state": "closed",
+          "opened": "2026-01-31T21:28:51Z",
+          "closed": "2026-02-01T10:31:42Z",
+          "type": "Bug",
+          "reason": "duplicate",
+          "days": 0.5436458333333334
+        },
+        {
+          "number": 27270,
+          "title": "Clearing recent files may need confirmation/ability to undo/harder to misclick",
+          "state": "closed",
+          "opened": "2026-01-31T20:07:10Z",
+          "closed": "2026-04-27T17:06:16Z",
+          "type": "Feature",
+          "reason": "completed",
+          "days": 85.874375
+        },
+        {
+          "number": 27269,
+          "title": "FEM: Local coordinate system (ConstraintTransform) can't be applied to edges of 2D models",
+          "state": "closed",
+          "opened": "2026-01-31T17:44:53Z",
+          "closed": "2026-06-24T03:53:56Z",
+          "type": "Feature",
+          "reason": "completed",
+          "days": 143.4229513888889
+        },
+        {
+          "number": 27268,
+          "title": "BIM: baseless wall with additions has a different icon in the Tree View",
+          "state": "closed",
+          "opened": "2026-01-31T17:20:06Z",
+          "closed": "2026-02-02T14:56:10Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 1.9000462962962963
+        },
+        {
+          "number": 27267,
+          "title": "BIM: debasing a wall with additions results in changed shape",
+          "state": "closed",
+          "opened": "2026-01-31T17:11:34Z",
+          "closed": "2026-02-16T14:14:36Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 15.877106481481482
+        },
+        {
+          "number": 27266,
+          "title": "Toponaming: Chamfer loses reference (face) after applying thickness command",
+          "state": "open",
+          "opened": "2026-01-31T13:08:29Z",
+          "closed": null,
+          "type": "Bug",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27263,
+          "title": "Navigation: FreeCAD does not identify itself to libspnav on linux.",
+          "state": "closed",
+          "opened": "2026-01-31T10:31:01Z",
+          "closed": "2026-02-09T16:55:25Z",
+          "type": "Other",
+          "reason": "completed",
+          "days": 9.266944444444444
+        },
+        {
+          "number": 27262,
+          "title": "CAM: Multi channel lathe feature request",
+          "state": "closed",
+          "opened": "2026-01-31T09:43:59Z",
+          "closed": "2026-09-22T15:21:56Z",
+          "type": "Feature",
+          "reason": "completed",
+          "days": 234.2346875
+        },
+        {
+          "number": 27260,
+          "title": "PartDesign: When applying additive pipe, entire design visually breaks",
+          "state": "open",
+          "opened": "2026-01-31T06:00:39Z",
+          "closed": null,
+          "type": "Unclassified",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27257,
+          "title": "CAM: An error occurs when `Start depth` = `Final depth` = `Safe height`",
+          "state": "closed",
+          "opened": "2026-01-31T01:03:28Z",
+          "closed": "2026-02-02T17:04:01Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 2.667048611111111
+        },
+        {
+          "number": 27256,
+          "title": "new wires created by draft, curves, and others are black on a dark background when the dark theme is enabled",
+          "state": "closed",
+          "opened": "2026-01-30T21:39:21Z",
+          "closed": "2026-01-30T22:06:35Z",
+          "type": "Unclassified",
+          "reason": "duplicate",
+          "days": 0.018912037037037036
+        },
+        {
+          "number": 27255,
+          "title": "Sheet Metal Workbench - Make Wall with material inside has a problem.",
+          "state": "closed",
+          "opened": "2026-01-30T21:08:13Z",
+          "closed": "2026-01-31T10:15:08Z",
+          "type": "Unclassified",
+          "reason": "not_planned",
+          "days": 0.5464699074074074
+        },
+        {
+          "number": 27252,
+          "title": "PartDesign: Polar Pattern fails with 6 occurences",
+          "state": "open",
+          "opened": "2026-01-30T14:48:48Z",
+          "closed": null,
+          "type": "Bug",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27251,
+          "title": "CAM: Hide/Show does not affect the whole subtree of a job",
+          "state": "closed",
+          "opened": "2026-01-30T14:32:46Z",
+          "closed": "2026-01-30T17:38:05Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 0.12869212962962964
+        },
+        {
+          "number": 27250,
+          "title": "MacOS: Performance at 100% CPU with PartDesign Draft",
+          "state": "open",
+          "opened": "2026-01-30T14:09:59Z",
+          "closed": null,
+          "type": "Unclassified",
+          "reason": "reopened",
+          "days": null
+        },
+        {
+          "number": 27248,
+          "title": "[Compilation Lost compatibility with Qt5",
+          "state": "closed",
+          "opened": "2026-01-30T08:38:28Z",
+          "closed": "2026-01-31T11:51:13Z",
+          "type": "Code Quality",
+          "reason": "completed",
+          "days": 1.1338541666666666
+        },
+        {
+          "number": 27246,
+          "title": "CAM: Setting `Start depth` equal to `Final depth` and zero for `Step down` leads to an error",
+          "state": "closed",
+          "opened": "2026-01-30T07:09:03Z",
+          "closed": "2026-02-09T16:06:06Z",
+          "type": "Other",
+          "reason": "completed",
+          "days": 10.37295138888889
+        },
+        {
+          "number": 27245,
+          "title": "CAM: Add laser toolbit shape",
+          "state": "open",
+          "opened": "2026-01-30T05:55:43Z",
+          "closed": null,
+          "type": "Feature",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27242,
+          "title": "Recompute always asked.",
+          "state": "closed",
+          "opened": "2026-01-29T18:23:21Z",
+          "closed": "2026-02-09T17:00:26Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 10.942418981481481
+        },
+        {
+          "number": 27234,
+          "title": "Display of text of Diameter Constraint in Sketcher is broken.",
+          "state": "closed",
+          "opened": "2026-01-29T12:28:53Z",
+          "closed": "2026-01-29T14:49:19Z",
+          "type": "Unclassified",
+          "reason": "duplicate",
+          "days": 0.09752314814814815
+        },
+        {
+          "number": 27233,
+          "title": "Measurement: Measures are marked to recompute on creation.",
+          "state": "closed",
+          "opened": "2026-01-29T12:24:35Z",
+          "closed": "2026-02-01T13:45:06Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 3.0559143518518517
+        },
+        {
+          "number": 27227,
+          "title": "CAM: Adaptive clearing regression",
+          "state": "closed",
+          "opened": "2026-01-29T10:44:11Z",
+          "closed": "2026-03-27T20:35:37Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 57.41071759259259
+        },
+        {
+          "number": 27223,
+          "title": "Sketcher: Diameter constrain - text not centred vertically",
+          "state": "closed",
+          "opened": "2026-01-29T05:09:22Z",
+          "closed": "2026-01-29T11:07:39Z",
+          "type": "Unclassified",
+          "reason": "duplicate",
+          "days": 0.24880787037037036
+        },
+        {
+          "number": 27221,
+          "title": "VarSet: Changing value causes immediate application crash",
+          "state": "closed",
+          "opened": "2026-01-29T00:38:00Z",
+          "closed": "2026-03-10T00:52:59Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 40.01040509259259
+        },
+        {
+          "number": 27218,
+          "title": "Website: TLS certificate has expired",
+          "state": "closed",
+          "opened": "2026-01-28T20:41:09Z",
+          "closed": "2026-01-28T21:57:22Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 0.05292824074074074
+        },
+        {
+          "number": 27217,
+          "title": "STEP: Import performance issue, File->Import vs Part.read()",
+          "state": "open",
+          "opened": "2026-01-28T17:41:20Z",
+          "closed": null,
+          "type": "Unclassified",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27216,
+          "title": "macOS: v1.2 does not work on Big Sur",
+          "state": "closed",
+          "opened": "2026-01-28T16:24:43Z",
+          "closed": "2026-11-03T18:30:57Z",
+          "type": "Code Quality",
+          "reason": "completed",
+          "days": 279.08766203703703
+        },
+        {
+          "number": 27215,
+          "title": "Assembly: one slider of a double slider not working",
+          "state": "open",
+          "opened": "2026-01-28T15:58:46Z",
+          "closed": null,
+          "type": "Bug",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27214,
+          "title": "Assembly: buggy behavior when dragging the slider of a double slider to the end.",
+          "state": "closed",
+          "opened": "2026-01-28T15:51:05Z",
+          "closed": "2026-07-23T18:27:59Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 176.10895833333333
+        },
+        {
+          "number": 27212,
+          "title": "Spreadsheet: Unable to set some aliases (improve error message)",
+          "state": "closed",
+          "opened": "2026-01-28T15:38:47Z",
+          "closed": "2026-09-10T15:18:02Z",
+          "type": "Other",
+          "reason": "completed",
+          "days": 224.9855902777778
+        },
+        {
+          "number": 27211,
+          "title": "Core: Refine doesn't work for padded Spline edges",
+          "state": "open",
+          "opened": "2026-01-28T14:45:59Z",
+          "closed": null,
+          "type": "Unclassified",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27209,
+          "title": "Cannot Skip Recomputes when the Sketch Editor is open.",
+          "state": "open",
+          "opened": "2026-01-28T12:43:59Z",
+          "closed": null,
+          "type": "Feature",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27208,
+          "title": "Bug with Link and Binder -> TopoShapeExpansion.cpp(983): hasher mismatch",
+          "state": "open",
+          "opened": "2026-01-28T11:53:46Z",
+          "closed": null,
+          "type": "Unclassified",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27207,
+          "title": "BIM: Baseless walls cannot be merged",
+          "state": "open",
+          "opened": "2026-01-28T10:57:44Z",
+          "closed": null,
+          "type": "Feature",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27204,
+          "title": "Assembly: Multiple different DOF solver entries",
+          "state": "closed",
+          "opened": "2026-01-28T07:45:19Z",
+          "closed": "2026-01-31T14:19:37Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 3.2738194444444444
+        },
+        {
+          "number": 27201,
+          "title": "FEM: ccx output .frd parsing in Python fails due to locale settings on Windows",
+          "state": "closed",
+          "opened": "2026-01-27T19:52:54Z",
+          "closed": "2026-01-27T20:56:55Z",
+          "type": "Unclassified",
+          "reason": "duplicate",
+          "days": 0.04445601851851852
+        },
+        {
+          "number": 27200,
+          "title": "Assembly: Slider joint of of sub-assembly not working when inserted as grounded part",
+          "state": "closed",
+          "opened": "2026-01-27T19:00:17Z",
+          "closed": "2026-02-02T16:43:47Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 5.905208333333333
+        },
+        {
+          "number": 27199,
+          "title": "The behavior of the H key in Sketcher when using the Gesture navigation style",
+          "state": "closed",
+          "opened": "2026-01-27T18:37:42Z",
+          "closed": "2026-01-28T04:32:45Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 0.41322916666666665
+        },
+        {
+          "number": 27198,
+          "title": "Problem with Groups",
+          "state": "closed",
+          "opened": "2026-01-27T18:17:56Z",
+          "closed": "2026-01-27T19:28:01Z",
+          "type": "Unclassified",
+          "reason": "not_planned",
+          "days": 0.04866898148148148
+        },
+        {
+          "number": 27197,
+          "title": "Error DirectWrite: CreateFontFaceFromHDC() failed  while opening FreeCAD",
+          "state": "closed",
+          "opened": "2026-01-27T15:55:06Z",
+          "closed": "2026-08-27T16:11:20Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 212.01127314814815
+        },
+        {
+          "number": 27193,
+          "title": "Qt Designer plugin duplicates widget definitions.",
+          "state": "open",
+          "opened": "2026-01-27T11:57:47Z",
+          "closed": null,
+          "type": "Code Quality",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27190,
+          "title": "Stylesheet: Stock Bounding Box is Not Visible When Using Dark Theme in CAM wb",
+          "state": "closed",
+          "opened": "2026-01-27T05:46:09Z",
+          "closed": "2026-05-30T04:23:38Z",
+          "type": "Other",
+          "reason": "completed",
+          "days": 122.94269675925926
+        },
+        {
+          "number": 27189,
+          "title": "Modification of Subtractive pipe sketch breaks part design",
+          "state": "open",
+          "opened": "2026-01-27T05:39:50Z",
+          "closed": null,
+          "type": "Bug",
+          "reason": "reopened",
+          "days": null
+        },
+        {
+          "number": 27187,
+          "title": "Performance: Status bar text updates lag with eGPU",
+          "state": "closed",
+          "opened": "2026-01-26T22:02:48Z",
+          "closed": "2026-09-05T00:07:28Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 221.08657407407406
+        },
+        {
+          "number": 27183,
+          "title": "CAM: Update openspb_post.py to refactored",
+          "state": "closed",
+          "opened": "2026-01-26T17:32:50Z",
+          "closed": "2026-03-28T14:43:47Z",
+          "type": "Code Quality",
+          "reason": "completed",
+          "days": 60.88260416666667
+        },
+        {
+          "number": 27181,
+          "title": "Draft Layers don't work with Part containers",
+          "state": "closed",
+          "opened": "2026-01-26T17:20:49Z",
+          "closed": "2026-01-26T17:24:50Z",
+          "type": "Unclassified",
+          "reason": "duplicate",
+          "days": 0.002789351851851852
+        },
+        {
+          "number": 27176,
+          "title": "Spreadsheet: Open newly created spreadsheets",
+          "state": "open",
+          "opened": "2026-01-26T14:53:25Z",
+          "closed": null,
+          "type": "Feature",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27175,
+          "title": "Gui: Task boxes have a fixed minimum vertical size that cannot be changed",
+          "state": "open",
+          "opened": "2026-01-26T13:52:14Z",
+          "closed": null,
+          "type": "Other",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27171,
+          "title": "Performance: Too easy to invoke 'FreeCAD is not responding' dialogue when opening files on Linux w/ GNOME with slow CPU",
+          "state": "open",
+          "opened": "2026-01-26T10:26:20Z",
+          "closed": null,
+          "type": "Has workaround",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27170,
+          "title": "BIM: The 'None (Use whole object)' option of Arch_Reference does not render all objects properly",
+          "state": "open",
+          "opened": "2026-01-26T10:21:53Z",
+          "closed": null,
+          "type": "Bug",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27169,
+          "title": "Sketcher: Angle constraint applied to arc not correctly attached to cursor",
+          "state": "closed",
+          "opened": "2026-01-26T09:21:54Z",
+          "closed": "2026-01-27T15:33:33Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 1.2580902777777778
+        },
+        {
+          "number": 27168,
+          "title": "Assembly: Isolate doesn't work with sub-assemblies",
+          "state": "closed",
+          "opened": "2026-01-26T09:17:07Z",
+          "closed": "2026-02-02T16:41:43Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 7.30875
+        },
+        {
+          "number": 27165,
+          "title": "Spreadsheet: Scrollbar does not follow other scrolling",
+          "state": "closed",
+          "opened": "2026-01-26T08:49:34Z",
+          "closed": "2026-02-16T16:38:57Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 21.325960648148147
+        },
+        {
+          "number": 27164,
+          "title": "macOS: App doesn't open sometimes",
+          "state": "closed",
+          "opened": "2026-01-26T08:46:49Z",
+          "closed": "2026-07-17T14:23:48Z",
+          "type": "Regression",
+          "reason": "not_planned",
+          "days": 172.2340162037037
+        },
+        {
+          "number": 27163,
+          "title": "BIM: Objects copied to outside of the  active Arch_Level when you copy-paste an object  [Feature request]",
+          "state": "closed",
+          "opened": "2026-01-26T07:41:11Z",
+          "closed": "2026-01-26T10:02:34Z",
+          "type": "Unclassified",
+          "reason": "duplicate",
+          "days": 0.09818287037037036
+        },
+        {
+          "number": 27162,
+          "title": "BIM: The placement Z value should be adjusted automatically when copying objects between floor plans (Arch_Level) [Feature request]",
+          "state": "open",
+          "opened": "2026-01-26T07:24:08Z",
+          "closed": null,
+          "type": "Feature",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27157,
+          "title": "Techdraw WB - massive circle over all vertices in view",
+          "state": "closed",
+          "opened": "2026-01-25T20:57:23Z",
+          "closed": "2026-01-26T18:23:39Z",
+          "type": "Unclassified",
+          "reason": "not_planned",
+          "days": 0.8932407407407408
+        },
+        {
+          "number": 27155,
+          "title": "Sketcher: vertex/edge not found when box-selecting",
+          "state": "closed",
+          "opened": "2026-01-25T18:45:37Z",
+          "closed": "2026-01-26T07:22:14Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 0.5254282407407408
+        },
+        {
+          "number": 27153,
+          "title": "Slow viewport performance with many Draft objects on Windows compared to Linux",
+          "state": "open",
+          "opened": "2026-01-25T17:21:24Z",
+          "closed": null,
+          "type": "Bug",
+          "reason": null,
+          "days": null
+        },
+        {
+          "number": 27151,
+          "title": "Spreadsheet: Ctrl+A doesn't work",
+          "state": "closed",
+          "opened": "2026-01-25T16:22:00Z",
+          "closed": "2026-03-25T05:39:36Z",
+          "type": "Bug",
+          "reason": "completed",
+          "days": 58.55388888888889
+        },
+        {
+          "number": 27150,
+          "title": "Sub-Shape Binder ends up with wrong geometry?",
+          "state": "closed",
+          "opened": "2026-01-25T16:12:44Z",
+          "closed": "2026-01-26T07:54:32Z",
+          "type": "Bug",
+          "reason": "duplicate",
+          "days": 0.6540277777777778
+        },
+        {
+          "number": 27147,
+          "title": "Spreadsheet: Rightmost column disappears when inserting a new column",
+          "state": "closed",
+          "opened": "2026-01-25T11:58:30Z",
+          "closed": "2026-03-07T19:59:51Z",
+          "type": "Unclassified",
+          "reason": "completed",
+          "days": 41.334270833333335
+        },
+        {
+          "number": 27146,
+          "title": "Thickness Command with tapered Block",
+          "state": "closed",
+          "opened": "2026-01-25T11:32:06Z",
+          "closed": "2026-02-21T07:54:26Z",
+          "type": "Bug",
+          "reason": "duplicate",
+          "days": 26.848842592592593
+        }
+      ],
+      "source": {
+        "title": "FreeCAD GitHub issue tracker",
+        "provider": "GitHub",
+        "type": "public",
+        "evidenceFlow": [
+          {
+            "title": "Search GitHub issues",
+            "detail": "repo:FreeCAD/FreeCAD is:issue created:2026-01-25..2026-01-31, limit 100. Retrieved 64 issues. Fetch each issue to verify metadata."
+          }
+        ]
+      },
+      "methods": [
+        {
+          "language": "text",
+          "code": "Deduplicate by issue number. Use UTC dates. Use the first Type label or Unclassified. For closed issues, divide elapsed seconds between creation and closure by 86,400."
+        }
+      ]
+    }
+  },
+  "id": "dashboard:1fec6a99-579f-43ec-a68f-59d55567e299",
+  "exportPreferences": {
+    "selected": null,
+    "destinations": []
+  }
+}
+
