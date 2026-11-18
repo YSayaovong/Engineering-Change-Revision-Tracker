@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing Release Readiness</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              900: '#0b1f3a',
+              800: '#132f54',
+              700: '#1c4273',
+            },
+            backdrop: '#f0f5fa',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Custom accessible range slider styling */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      background: #cbd5e1;
+      outline: none;
+      transition: background 0.15s ease;
+    }
+
+    input[type="range"]:focus-visible {
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.35);
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #0f294a;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.35);
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.15s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #0d9488;
+      transform: scale(1.08);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #0f294a;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.35);
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.15s ease;
+    }
+
+    input[type="range"]::-moz-range-thumb:hover {
+      background: #0d9488;
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body class="bg-backdrop text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Navy Top Navigation / Header -->
+  <header class="bg-navy-900 text-white shadow-md border-b border-navy-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div class="flex items-start sm:items-center gap-3.5">
+        <!-- Engineering Blueprint / Checklist Icon -->
+        <div class="p-2.5 bg-navy-800 rounded-xl border border-navy-700 shrink-0 text-teal-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Drawing Release Readiness</h1>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-navy-700 text-sky-200 border border-navy-700">
+              SAP &amp; ECM Cutoff Planner
+            </span>
+          </div>
+          <p class="text-sm text-slate-300 mt-1">
+            Can one designer finish their drawing revision updates in SAP and prepare the ECM before the shop cutoff?
+          </p>
+        </div>
+      </div>
+
+      <!-- Reset Sample Button -->
+      <div class="shrink-0">
+        <button
+          id="resetBtn"
+          type="button"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/10 hover:bg-white/20 active:bg-white/25 text-white border border-white/20 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          Reset Sample
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Responsive Dashboard Content -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+
+    <!-- Top Status Banner Card -->
+    <section
+      id="statusBanner"
+      aria-live="polite"
+      class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 transition-colors"
+    >
+      <div class="flex items-start gap-3.5">
+        <div id="statusIconWrap" class="p-2.5 rounded-xl bg-amber-50 text-amber-600 shrink-0 mt-0.5">
+          <!-- Icon updated dynamically -->
+          <svg id="statusIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span id="statusBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800">
+              Over Cutoff
+            </span>
+            <span class="text-xs font-medium text-slate-500">Single-Designer Capacity Check (Sample Scenario)</span>
+          </div>
+          <h2 id="statusHeadline" class="text-lg sm:text-xl font-bold text-slate-900 mt-1.5">
+            Over cutoff — 60 extra minutes needed to complete all 12 revisions.
+          </h2>
+          <p id="statusSubtext" class="text-sm text-slate-600 mt-0.5">
+            At 15 min/drawing, 120 minutes allows 8 drawing revisions before cutoff, leaving 4 pending in the SAP/ECM queue.
+          </p>
+        </div>
+      </div>
+
+      <!-- Highlighted Time Margin / Shortfall Pill -->
+      <div id="timeDeltaCard" class="shrink-0 bg-amber-50/90 border border-amber-200 rounded-xl px-4 py-3 text-left md:text-right min-w-[190px]">
+        <div id="timeDeltaLabel" class="text-xs font-semibold uppercase tracking-wider text-amber-800">
+          Extra Minutes Needed
+        </div>
+        <div id="timeDeltaValue" class="text-2xl sm:text-3xl font-bold text-amber-900 tabular-nums mt-0.5">
+          60 min
+        </div>
+        <div id="timeDeltaFormula" class="text-xs text-amber-700 mt-0.5">
+          180 min required vs. 120 min available
+        </div>
+      </div>
+    </section>
+
+    <!-- Primary Two-Column Grid: Controls (Left) & Output Analytics (Right) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+      <!-- Left Column: Three Keyboard-Accessible Sliders Card -->
+      <section aria-labelledby="inputs-heading" class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-6 space-y-6">
+        <div class="border-b border-slate-100 pb-4">
+          <h2 id="inputs-heading" class="text-base sm:text-lg font-bold text-slate-900">
+            Queue &amp; Cutoff Parameters
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            Adjust sliders or use arrow keys to test SAP revision &amp; ECM readiness scenarios.
+          </p>
+        </div>
+
+        <!-- Slider 1: Drawings awaiting update -->
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <label for="backlogSlider" class="text-sm font-semibold text-slate-800">
+              Drawings awaiting update
+            </label>
+            <output
+              id="backlogOutput"
+              for="backlogSlider"
+              class="inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-bold bg-slate-100 text-navy-900 tabular-nums border border-slate-200"
+            >
+              12 drawings
+            </output>
+          </div>
+          <input
+            id="backlogSlider"
+            type="range"
+            min="0"
+            max="40"
+            step="1"
+            value="12"
+            aria-describedby="backlogRangeHint"
+          />
+          <div id="backlogRangeHint" class="flex justify-between text-xs text-slate-400 font-medium">
+            <span>0 (Empty)</span>
+            <span>Default: 12</span>
+            <span>40 drawings</span>
+          </div>
+        </div>
+
+        <!-- Slider 2: Minutes per drawing -->
+        <div class="space-y-2.5 pt-1">
+          <div class="flex items-center justify-between gap-2">
+            <label for="minutesPerDrawingSlider" class="text-sm font-semibold text-slate-800">
+              Minutes per drawing
+            </label>
+            <output
+              id="minutesPerDrawingOutput"
+              for="minutesPerDrawingSlider"
+              class="inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-bold bg-slate-100 text-navy-900 tabular-nums border border-slate-200"
+            >
+              15 min
+            </output>
+          </div>
+          <input
+            id="minutesPerDrawingSlider"
+            type="range"
+            min="1"
+            max="60"
+            step="1"
+            value="15"
+            aria-describedby="minutesPerDrawingHint"
+          />
+          <div id="minutesPerDrawingHint" class="flex justify-between text-xs text-slate-400 font-medium">
+            <span>1 min</span>
+            <span>Default: 15 min</span>
+            <span>60 min</span>
+          </div>
+        </div>
+
+        <!-- Slider 3: Minutes before cutoff -->
+        <div class="space-y-2.5 pt-1">
+          <div class="flex items-center justify-between gap-2">
+            <label for="cutoffMinutesSlider" class="text-sm font-semibold text-slate-800">
+              Minutes before cutoff
+            </label>
+            <output
+              id="cutoffMinutesOutput"
+              for="cutoffMinutesSlider"
+              class="inline-flex items-center px-2.5 py-1 rounded-lg text-sm font-bold bg-slate-100 text-navy-900 tabular-nums border border-slate-200"
+            >
+              120 min
+            </output>
+          </div>
+          <input
+            id="cutoffMinutesSlider"
+            type="range"
+            min="0"
+            max="480"
+            step="1"
+            value="120"
+            aria-describedby="cutoffMinutesHint"
+          />
+          <div id="cutoffMinutesHint" class="flex justify-between text-xs text-slate-400 font-medium">
+            <span>0 min</span>
+            <span>Default: 120 min (2h)</span>
+            <span>480 min (8h)</span>
+          </div>
+        </div>
+
+        <!-- Fictional Sample Context Box -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 text-xs text-slate-600 leading-relaxed">
+          <span class="font-semibold text-slate-800">Fictional Sample Preset:</span>
+          ECM Package <span class="font-mono text-slate-700">ECM-4082</span> (Valve Housing Rev C) starts with 12 SAP DIR updates at 15 min each and 120 min remaining before the 4:00 PM shop floor cutoff.
+        </div>
+      </section>
+
+      <!-- Right Column: Metrics Cards & Stacked Horizontal Bar Visualization -->
+      <section aria-labelledby="readiness-heading" class="lg:col-span-7 space-y-6">
+
+        <!-- 4 KPI Metric Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4">
+          <!-- KPI 1: Can Process -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4">
+            <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-teal-700">
+              <span class="w-2.5 h-2.5 rounded-full bg-teal-600 inline-block"></span>
+              Can Process
+            </div>
+            <div id="canProcessMetric" class="text-2xl sm:text-3xl font-bold text-slate-900 tabular-nums mt-2">
+              8
+            </div>
+            <div class="text-xs text-slate-500 mt-1">
+              Drawable revisions
+            </div>
+          </div>
+
+          <!-- KPI 2: Still Pending -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4">
+            <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-orange-700">
+              <span class="w-2.5 h-2.5 rounded-full bg-orange-500 inline-block"></span>
+              Still Pending
+            </div>
+            <div id="stillPendingMetric" class="text-2xl sm:text-3xl font-bold text-slate-900 tabular-nums mt-2">
+              4
+            </div>
+            <div class="text-xs text-slate-500 mt-1">
+              Left after cutoff
+            </div>
+          </div>
+
+          <!-- KPI 3: Required Minutes -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4">
+            <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Required Time
+            </div>
+            <div id="requiredMinutesMetric" class="text-2xl sm:text-3xl font-bold text-slate-900 tabular-nums mt-2">
+              180<span class="text-base font-semibold text-slate-500 ml-0.5">m</span>
+            </div>
+            <div id="requiredBreakdownText" class="text-xs text-slate-500 mt-1 tabular-nums">
+              12 × 15 min
+            </div>
+          </div>
+
+          <!-- KPI 4: Available Minutes -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4">
+            <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Cutoff Window
+            </div>
+            <div id="availableMinutesMetric" class="text-2xl sm:text-3xl font-bold text-slate-900 tabular-nums mt-2">
+              120<span class="text-base font-semibold text-slate-500 ml-0.5">m</span>
+            </div>
+            <div id="availableHoursText" class="text-xs text-slate-500 mt-1 tabular-nums">
+              2.0 hrs available
+            </div>
+          </div>
+        </div>
+
+        <!-- Stacked Horizontal Bar Card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-6 space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+              <h2 id="readiness-heading" class="text-base sm:text-lg font-bold text-slate-900">
+                Revision Queue Breakdown Before Cutoff
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                Proportional split of drawings completed in SAP vs. remaining past shop cutoff.
+              </p>
+            </div>
+            <div id="completionPercentBadge" class="self-start sm:self-center px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 tabular-nums">
+              67% Ready (8 of 12)
+            </div>
+          </div>
+
+          <!-- Legend with Counts -->
+          <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm" role="list" aria-label="Queue status legend">
+            <div class="flex items-center gap-2" role="listitem">
+              <span class="w-3.5 h-3.5 rounded bg-teal-600 inline-block shrink-0" aria-hidden="true"></span>
+              <span class="font-medium text-slate-700">Processed before cutoff:</span>
+              <span id="legendProcessedCount" class="font-bold text-teal-700 tabular-nums">8</span>
+            </div>
+            <div class="flex items-center gap-2" role="listitem">
+              <span class="w-3.5 h-3.5 rounded bg-orange-500 inline-block shrink-0" aria-hidden="true"></span>
+              <span class="font-medium text-slate-700">Pending after cutoff:</span>
+              <span id="legendPendingCount" class="font-bold text-orange-600 tabular-nums">4</span>
+            </div>
+          </div>
+
+          <!-- Stacked Horizontal Bar -->
+          <div class="space-y-2">
+            <div
+              id="stackedBarContainer"
+              class="w-full h-11 bg-slate-100 rounded-xl overflow-hidden flex border border-slate-200 p-1 gap-1"
+              role="img"
+              aria-label="Stacked bar showing 8 processed drawings in teal and 4 pending drawings in orange"
+            >
+              <!-- Teal Processed Segment -->
+              <div
+                id="processedBarSegment"
+                class="h-full bg-teal-600 rounded-lg transition-all duration-200 ease-out flex items-center justify-center text-white text-xs font-bold overflow-hidden whitespace-nowrap px-2"
+                style="width: 66.67%;"
+              >
+                <span id="processedBarLabel">8 Processed</span>
+              </div>
+
+              <!-- Orange Pending Segment -->
+              <div
+                id="pendingBarSegment"
+                class="h-full bg-orange-500 rounded-lg transition-all duration-200 ease-out flex items-center justify-center text-white text-xs font-bold overflow-hidden whitespace-nowrap px-2"
+                style="width: 33.33%;"
+              >
+                <span id="pendingBarLabel">4 Pending</span>
+              </div>
+
+              <!-- Empty Queue Placeholder Segment (shown only when backlog = 0) -->
+              <div
+                id="emptyBarSegment"
+                class="hidden h-full w-full bg-slate-200/80 rounded-lg flex items-center justify-center text-slate-600 text-xs font-semibold"
+              >
+                0 Drawings in Queue
+              </div>
+            </div>
+
+            <!-- Scale Ticks -->
+            <div class="flex justify-between text-xs text-slate-400 tabular-nums px-0.5">
+              <span>0</span>
+              <span id="midTickLabel">6 drawings</span>
+              <span id="maxTickLabel">12 drawings total</span>
+            </div>
+          </div>
+
+          <!-- Time Utilization Summary Strip -->
+          <div class="pt-3 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/70">
+              <span class="text-slate-500 block">Active Processing Time</span>
+              <span id="activeTimeSummary" class="font-bold text-slate-800 text-sm tabular-nums mt-0.5 block">
+                120 min used
+              </span>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/70">
+              <span class="text-slate-500 block">Unallocated Cutoff Buffer</span>
+              <span id="unallocatedTimeSummary" class="font-bold text-slate-800 text-sm tabular-nums mt-0.5 block">
+                0 min leftover
+              </span>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/70">
+              <span class="text-slate-500 block">ECM Readiness</span>
+              <span id="ecmReadinessSummary" class="font-bold text-orange-700 text-sm mt-0.5 block">
+                Incomplete (4 held)
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Governance & Release Caveat Footer Note -->
+    <footer class="bg-white rounded-2xl shadow-sm border border-slate-200/90 px-5 py-4 flex items-start sm:items-center gap-3 text-xs sm:text-sm text-slate-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-navy-700 shrink-0 mt-0.5 sm:mt-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p>
+        <strong class="font-semibold text-slate-800">Release Governance Note:</strong>
+        Completing SAP drawing revision updates and ECM preparation before cutoff only confirms drafting readiness;
+        <strong class="font-semibold text-slate-800">final shop release depends on approvals and distribution.</strong>
+        All figures shown are fictional sample values for planning simulation.
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Default sample configuration (must produce: 8 processed, 4 pending, 60 extra minutes needed)
+      const DEFAULTS = {
+        backlog: 12,
+        minutesPerDrawing: 15,
+        cutoffMinutes: 120
+      };
+
+      // Cache DOM references
+      const backlogSlider = document.getElementById('backlogSlider');
+      const minutesPerDrawingSlider = document.getElementById('minutesPerDrawingSlider');
+      const cutoffMinutesSlider = document.getElementById('cutoffMinutesSlider');
+      const resetBtn = document.getElementById('resetBtn');
+
+      const backlogOutput = document.getElementById('backlogOutput');
+      const minutesPerDrawingOutput = document.getElementById('minutesPerDrawingOutput');
+      const cutoffMinutesOutput = document.getElementById('cutoffMinutesOutput');
+
+      const statusBanner = document.getElementById('statusBanner');
+      const statusIconWrap = document.getElementById('statusIconWrap');
+      const statusIcon = document.getElementById('statusIcon');
+      const statusBadge = document.getElementById('statusBadge');
+      const statusHeadline = document.getElementById('statusHeadline');
+      const statusSubtext = document.getElementById('statusSubtext');
+
+      const timeDeltaCard = document.getElementById('timeDeltaCard');
+      const timeDeltaLabel = document.getElementById('timeDeltaLabel');
+      const timeDeltaValue = document.getElementById('timeDeltaValue');
+      const timeDeltaFormula = document.getElementById('timeDeltaFormula');
+
+      const canProcessMetric = document.getElementById('canProcessMetric');
+      const stillPendingMetric = document.getElementById('stillPendingMetric');
+      const requiredMinutesMetric = document.getElementById('requiredMinutesMetric');
+      const requiredBreakdownText = document.getElementById('requiredBreakdownText');
+      const availableMinutesMetric = document.getElementById('availableMinutesMetric');
+      const availableHoursText = document.getElementById('availableHoursText');
+
+      const completionPercentBadge = document.getElementById('completionPercentBadge');
+      const legendProcessedCount = document.getElementById('legendProcessedCount');
+      const legendPendingCount = document.getElementById('legendPendingCount');
+      const stackedBarContainer = document.getElementById('stackedBarContainer');
+      const processedBarSegment = document.getElementById('processedBarSegment');
+      const processedBarLabel = document.getElementById('processedBarLabel');
+      const pendingBarSegment = document.getElementById('pendingBarSegment');
+      const pendingBarLabel = document.getElementById('pendingBarLabel');
+      const emptyBarSegment = document.getElementById('emptyBarSegment');
+      const midTickLabel = document.getElementById('midTickLabel');
+      const maxTickLabel = document.getElementById('maxTickLabel');
+
+      const activeTimeSummary = document.getElementById('activeTimeSummary');
+      const unallocatedTimeSummary = document.getElementById('unallocatedTimeSummary');
+      const ecmReadinessSummary = document.getElementById('ecmReadinessSummary');
+
+      /**
+       * Helper to update range slider fill track gradient visually
+       */
+      function updateSliderTrack(slider) {
+        const min = Number(slider.min);
+        const max = Number(slider.max);
+        const val = Number(slider.value);
+        const percent = ((val - min) / (max - min)) * 100;
+        slider.style.background = `linear-gradient(to right, #0d9488 0%, #0d9488 ${percent}%, #cbd5e1 ${percent}%, #cbd5e1 100%)`;
+      }
+
+      /**
+       * Helper to pluralize words cleanly
+       */
+      function pluralize(count, singular, plural) {
+        return count === 1 ? singular : plural;
+      }
+
+      /**
+       * Core calculation and UI update routine
+       */
+      function updateDashboard() {
+        try {
+          const backlog = parseInt(backlogSlider.value, 10);
+          const minutesPerDrawing = parseInt(minutesPerDrawingSlider.value, 10);
+          const availableMinutes = parseInt(cutoffMinutesSlider.value, 10);
+
+          // Update slider track fills
+          updateSliderTrack(backlogSlider);
+          updateSliderTrack(minutesPerDrawingSlider);
+          updateSliderTrack(cutoffMinutesSlider);
+
+          // Update slider value pills
+          backlogOutput.textContent = `${backlog} ${pluralize(backlog, 'drawing', 'drawings')}`;
+          minutesPerDrawingOutput.textContent = `${minutesPerDrawing} min`;
+          cutoffMinutesOutput.textContent = `${availableMinutes} min`;
+
+          // Core mathematical rules
+          const requiredMinutes = backlog * minutesPerDrawing;
+          const canProcess = Math.min(backlog, Math.floor(availableMinutes / minutesPerDrawing));
+          const stillPending = backlog - canProcess;
+
+          // Update KPI metric cards
+          canProcessMetric.textContent = canProcess;
+          stillPendingMetric.textContent = stillPending;
+          requiredMinutesMetric.innerHTML = `${requiredMinutes}<span class="text-base font-semibold text-slate-500 ml-0.5">m</span>`;
+          requiredBreakdownText.textContent = `${backlog} × ${minutesPerDrawing} min`;
+
+          availableMinutesMetric.innerHTML = `${availableMinutes}<span class="text-base font-semibold text-slate-500 ml-0.5">m</span>`;
+          const hoursFormatted = (availableMinutes / 60).toFixed(1);
+          availableHoursText.textContent = `${hoursFormatted} hrs available`;
+
+          // Update Time Delta Card (Extra minutes needed vs. Minutes to spare)
+          if (requiredMinutes > availableMinutes) {
+            const extraNeeded = requiredMinutes - availableMinutes;
+            timeDeltaLabel.textContent = 'Extra Minutes Needed';
+            timeDeltaLabel.className = 'text-xs font-semibold uppercase tracking-wider text-amber-800';
+            timeDeltaValue.textContent = `${extraNeeded} min`;
+            timeDeltaValue.className = 'text-2xl sm:text-3xl font-bold text-amber-900 tabular-nums mt-0.5';
+            timeDeltaCard.className = 'shrink-0 bg-amber-50/90 border border-amber-200 rounded-xl px-4 py-3 text-left md:text-right min-w-[195px]';
+            timeDeltaFormula.textContent = `${requiredMinutes} min required vs. ${availableMinutes} min available`;
+            timeDeltaFormula.className = 'text-xs text-amber-700 mt-0.5 tabular-nums';
+          } else {
+            const minutesToSpare = availableMinutes - requiredMinutes;
+            timeDeltaLabel.textContent = 'Minutes to Spare';
+            timeDeltaLabel.className = 'text-xs font-semibold uppercase tracking-wider text-teal-800';
+            timeDeltaValue.textContent = `${minutesToSpare} min`;
+            timeDeltaValue.className = 'text-2xl sm:text-3xl font-bold text-teal-900 tabular-nums mt-0.5';
+            timeDeltaCard.className = 'shrink-0 bg-teal-50/90 border border-teal-200 rounded-xl px-4 py-3 text-left md:text-right min-w-[195px]';
+            timeDeltaFormula.textContent = `${requiredMinutes} min required vs. ${availableMinutes} min available`;
+            timeDeltaFormula.className = 'text-xs text-teal-700 mt-0.5 tabular-nums';
+          }
+
+          // Determine 4 distinct states:
+          // 1. Empty queue (backlog === 0)
+          // 2. Over cutoff (requiredMinutes > availableMinutes)
+          // 3. Exact cutoff (requiredMinutes === availableMinutes && backlog > 0)
+          // 4. Fits before cutoff (requiredMinutes < availableMinutes && backlog > 0)
+          if (backlog === 0) {
+            statusBanner.className = 'bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 transition-colors';
+            statusIconWrap.className = 'p-2.5 rounded-xl bg-sky-50 text-sky-600 shrink-0 mt-0.5';
+            statusIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />';
+            statusBadge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-100 text-sky-800';
+            statusBadge.textContent = 'Empty Queue';
+            statusHeadline.textContent = 'Empty queue — no drawing revision updates awaiting SAP or ECM processing.';
+            statusSubtext.textContent = `${availableMinutes} minutes remain before shop cutoff with 0 revisions queued.`;
+          } else if (requiredMinutes > availableMinutes) {
+            const extraNeeded = requiredMinutes - availableMinutes;
+            statusBanner.className = 'bg-white rounded-2xl shadow-sm border border-amber-200/90 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 transition-colors';
+            statusIconWrap.className = 'p-2.5 rounded-xl bg-amber-50 text-amber-600 shrink-0 mt-0.5';
+            statusIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />';
+            statusBadge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800';
+            statusBadge.textContent = 'Over Cutoff';
+            statusHeadline.textContent = `Over cutoff — ${extraNeeded} extra ${pluralize(extraNeeded, 'minute', 'minutes')} needed to complete all ${backlog} ${pluralize(backlog, 'revision', 'revisions')}.`;
+            statusSubtext.textContent = `At ${minutesPerDrawing} min/drawing, ${availableMinutes} minutes allows ${canProcess} ${pluralize(canProcess, 'drawing', 'drawings')} before cutoff, leaving ${stillPending} pending.`;
+          } else if (requiredMinutes === availableMinutes) {
+            statusBanner.className = 'bg-white rounded-2xl shadow-sm border border-indigo-200/90 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 transition-colors';
+            statusIconWrap.className = 'p-2.5 rounded-xl bg-indigo-50 text-indigo-600 shrink-0 mt-0.5';
+            statusIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />';
+            statusBadge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800';
+            statusBadge.textContent = 'Exact Cutoff';
+            statusHeadline.textContent = `Exact cutoff — all ${backlog} ${pluralize(backlog, 'revision', 'revisions')} finish right at the ${availableMinutes}-minute mark with 0 minutes to spare.`;
+            statusSubtext.textContent = `Zero buffer remaining before cutoff; any interruption in SAP or ECM prep will push items past cutoff.`;
+          } else {
+            const minutesToSpare = availableMinutes - requiredMinutes;
+            statusBanner.className = 'bg-white rounded-2xl shadow-sm border border-teal-200/90 p-5 sm:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 transition-colors';
+            statusIconWrap.className = 'p-2.5 rounded-xl bg-teal-50 text-teal-600 shrink-0 mt-0.5';
+            statusIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />';
+            statusBadge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-800';
+            statusBadge.textContent = 'Fits Before Cutoff';
+            statusHeadline.textContent = `Fits before cutoff — all ${backlog} ${pluralize(backlog, 'revision', 'revisions')} can be processed with ${minutesToSpare} ${pluralize(minutesToSpare, 'minute', 'minutes')} to spare.`;
+            statusSubtext.textContent = `Designer finishes SAP updates and ECM preparation in ${requiredMinutes} min out of ${availableMinutes} min available.`;
+          }
+
+          // Update Stacked Horizontal Bar & Legend
+          legendProcessedCount.textContent = canProcess;
+          legendPendingCount.textContent = stillPending;
+
+          if (backlog === 0) {
+            completionPercentBadge.textContent = '100% Ready (0 of 0)';
+            processedBarSegment.classList.add('hidden');
+            pendingBarSegment.classList.add('hidden');
+            emptyBarSegment.classList.remove('hidden');
+            stackedBarContainer.setAttribute('aria-label', 'Stacked bar showing empty queue with 0 drawings');
+            midTickLabel.textContent = '0 drawings';
+            maxTickLabel.textContent = '0 drawings total';
+          } else {
+            emptyBarSegment.classList.add('hidden');
+            const pctProcessed = Math.round((canProcess / backlog) * 100);
+            const processedWidthPct = (canProcess / backlog) * 100;
+            const pendingWidthPct = (stillPending / backlog) * 100;
+
+            completionPercentBadge.textContent = `${pctProcessed}% Ready (${canProcess} of ${backlog})`;
+            stackedBarContainer.setAttribute(
+              'aria-label',
+              `Stacked bar showing ${canProcess} processed drawings in teal and ${stillPending} pending drawings in orange`
+            );
+
+            if (canProcess === 0) {
+              processedBarSegment.classList.add('hidden');
+              processedBarSegment.style.width = '0%';
+            } else {
+              processedBarSegment.classList.remove('hidden');
+              processedBarSegment.style.width = `${processedWidthPct}%`;
+              processedBarLabel.textContent = processedWidthPct >= 18 ? `${canProcess} Processed` : `${canProcess}`;
+            }
+
+            if (stillPending === 0) {
+              pendingBarSegment.classList.add('hidden');
+              pendingBarSegment.style.width = '0%';
+            } else {
+              pendingBarSegment.classList.remove('hidden');
+              pendingBarSegment.style.width = `${pendingWidthPct}%`;
+              pendingBarLabel.textContent = pendingWidthPct >= 18 ? `${stillPending} Pending` : `${stillPending}`;
+            }
+
+            const halfVal = Math.round(backlog / 2);
+            midTickLabel.textContent = `${halfVal} ${pluralize(halfVal, 'drawing', 'drawings')}`;
+            maxTickLabel.textContent = `${backlog} ${pluralize(backlog, 'drawing', 'drawings')} total`;
+          }
+
+          // Bottom Time Utilization Summary Strip
+          const activeMinutesUsed = canProcess * minutesPerDrawing;
+          const leftoverUnallocated = Math.max(0, availableMinutes - activeMinutesUsed);
+
+          activeTimeSummary.textContent = `${activeMinutesUsed} min used`;
+          unallocatedTimeSummary.textContent = `${leftoverUnallocated} min leftover`;
+
+          if (backlog === 0) {
+            ecmReadinessSummary.textContent = 'No revisions queued';
+            ecmReadinessSummary.className = 'font-bold text-slate-700 text-sm mt-0.5 block';
+          } else if (stillPending === 0) {
+            ecmReadinessSummary.textContent = 'All revisions prepped';
+            ecmReadinessSummary.className = 'font-bold text-teal-700 text-sm mt-0.5 block';
+          } else {
+            ecmReadinessSummary.textContent = `Incomplete (${stillPending} held)`;
+            ecmReadinessSummary.className = 'font-bold text-orange-700 text-sm mt-0.5 block';
+          }
+        } catch (err) {
+          console.error('Error updating Drawing Release Readiness dashboard:', err);
+        }
+      }
+
+      /**
+       * Reset all sliders back to default sample values
+       */
+      function resetSample() {
+        backlogSlider.value = DEFAULTS.backlog;
+        minutesPerDrawingSlider.value = DEFAULTS.minutesPerDrawing;
+        cutoffMinutesSlider.value = DEFAULTS.cutoffMinutes;
+        updateDashboard();
+      }
+
+      // Attach instant input listeners
+      backlogSlider.addEventListener('input', updateDashboard);
+      minutesPerDrawingSlider.addEventListener('input', updateDashboard);
+      cutoffMinutesSlider.addEventListener('input', updateDashboard);
+      resetBtn.addEventListener('click', resetSample);
+
+      // Initialize on load
+      updateDashboard();
+    })();
+  </script>
+</body>
+</html>
